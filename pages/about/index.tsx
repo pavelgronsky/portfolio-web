@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-key */
+
+import {motion} from 'framer-motion'
+import {useState} from 'react'
+import CountUp from 'react-countup'
 
 import Avatar from '@components/Avatar'
 import Circles from '@components/Circles'
 import {fadeIn} from '@utils/variants'
-import {motion} from 'framer-motion'
-import {useState} from 'react'
 
 import {
     FaHtml5,
@@ -25,13 +28,9 @@ interface InfoSharedProps {
     title: string;
 }
 
-interface IconsProps {
-    key: number;
-    iconName: JSX.Element;
-}
-
 interface InfoProps extends InfoSharedProps {
-    icons: IconsProps[];
+    icons?: JSX.Element[];
+    stage?: string;
 }
 
 interface AboutDataProps extends InfoSharedProps {
@@ -45,34 +44,78 @@ const aboutData: AboutDataProps[] = [
             {
                 title: 'Web Development',
                 icons: [
-                    {key: 1, iconName: <FaHtml5 />},
-                    {key: 2, iconName: <FaCss3 />},
-                    {key: 3, iconName: <FaJs />},
-                    {key: 4, iconName: <FaReact />},
-                    {key: 5, iconName: <SiNextdotjs />},
-                    {key: 6, iconName: <SiFramer />},
-                    {key: 7, iconName: <FaWordpress />},
-                    {key: 8, iconName: <FaHtml5 />},
+                    <FaHtml5 />,
+                    <FaCss3 />,
+                    <FaJs />,
+                    <FaReact />,
+                    <SiNextdotjs />,
+                    <SiFramer />,
+                    <FaWordpress />,
+                    <FaHtml5 />,
                 ],
             },
             {
                 title: 'UI/UX Design',
                 icons: [
-                    {key: 1, iconName: <FaHtml5 />},
-                    {key: 2, iconName: <FaCss3 />},
-                    {key: 3, iconName: <FaJs />},
-                    {key: 4, iconName: <FaReact />},
-                    {key: 5, iconName: <SiNextdotjs />},
-                    {key: 6, iconName: <SiFramer />},
-                    {key: 7, iconName: <FaWordpress />},
-                    {key: 8, iconName: <FaHtml5 />},
+                    <FaHtml5 />,
+                    <FaCss3 />,
+                    <FaJs />,
+                    <FaReact />,
+                    <SiNextdotjs />,
+                    <SiFramer />,
+                    <FaWordpress />,
+                    <FaHtml5 />,
                 ],
             },
         ]
     },
-    //{title: 'Awards'},
-    //{title: 'Experience'},
-    //{title: 'Credentials'},
+    {
+        title: 'Awards',
+        info: [
+            {
+                title: 'Webby Awards - Honoree',
+                stage: '2011 - 2012',
+            },
+            {
+                title: 'Adobe Design Achievement Awards - Finalist',
+                stage: '2009 - 2010',
+            },
+        ],
+    },
+    {
+        title: 'experience',
+        info: [
+            {
+                title: 'UX/UI Designer - XYZ Company',
+                stage: '2012 - 2023',
+            },
+            {
+                title: 'Web Developer - ABC Agency',
+                stage: '2010 - 2012',
+            },
+            {
+                title: 'Intern - DEF Corporation',
+                stage: '2008 - 2010',
+            },
+        ],
+    },
+    {
+        title: 'credentials',
+        info: [
+            {
+                title: 'Web Development - ABC University, LA, CA',
+                stage: '2011',
+            },
+            {
+                title: 'Computer Science Diploma - AV Technical Institute',
+                stage: '2009',
+            },
+            {
+                title: 'Certified Graphic Designer - ABC Institute, Los Angeles, CA',
+                stage: '2006',
+            },
+        ],
+    },
 ]
 
 const AboutPage = () => {
@@ -86,12 +129,81 @@ const AboutPage = () => {
                 initial='hidden'
                 animate='show'
                 exit='hidden'
-                className='hidden xl:flex absolute bottom-0 -left-[370px]'>
+                className='hidden xl:flex absolute bottom-0 -left-[210px]'>
                 <Avatar />
             </motion.div>
             <div className='container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6'>
-                <div className='flex-1 flex flex-col justify-center'>text</div>
-                <div className='flex flex-col w-full xl:max-w-[48%] h-[480px]'>
+                {/* text */}
+                <div className='flex-1 flex flex-col justify-center'>
+                    <motion.h2
+                        variants={fadeIn('right', 0.2)}
+                        initial='hidden'
+                        animate='show'
+                        exit='hidden'
+                        className='h2'>
+                        Captivating <span className='text-accent'>stories</span> birth magnificent design.
+                    </motion.h2>
+                    <motion.p
+                        variants={fadeIn('right', 0.4)}
+                        initial='hidden'
+                        animate='show'
+                        exit='hidden'
+                        className='max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0'>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry is standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    </motion.p>
+                    {/* counters */}
+                    <motion.div
+                        variants={fadeIn('right', 0.6)}
+                        initial='hidden'
+                        animate='show'
+                        exit='hidden'
+                        className='hidden md:flex md:max-w-xl xl:max-w-none mx-auto xl:mx-0 mb-8'>
+                        <div className='flex flex-1 xl:gap-x-6'>
+                            {/* experience */}
+                            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0'>
+                                <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
+                                    <CountUp start={0} end={10} duration={5} /> +
+                                </div>
+                                <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Years of experience</div>
+                            </div>
+                            {/*clients*/}
+                            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0'>
+                                <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
+                                    <CountUp start={0} end={10} duration={5} /> +
+                                </div>
+                                <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
+                                    Satisfied clients
+                                </div>
+                            </div>
+                            {/*projects*/}
+                            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0'>
+                                <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
+                                    <CountUp start={0} end={10} duration={5} /> +
+                                </div>
+                                <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
+                                    Finished projects
+                                </div>
+                            </div>
+                            {/*awards*/}
+                            <div className='relative flex-1'>
+                                <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
+                                    <CountUp start={0} end={10} duration={5} /> +
+                                </div>
+                                <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
+                                    Winning awards
+                                </div>
+                            </div>
+                        </div>
+
+                    </motion.div>
+                </div>
+                {/* info */}
+                <motion.div
+                    variants={fadeIn('left', 0.4)}
+                    initial='hidden'
+                    animate='show'
+                    exit='hidden'
+                    className='flex flex-col w-full xl:max-w-[48%] h-[480px]'>
                     <div className='flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4'>
                         {aboutData.map((item, itemIndex) => {
                             return (
@@ -110,17 +222,24 @@ const AboutPage = () => {
                     <div className='py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start'>
                         {aboutData[index].info.map((item, itemIndex) => {
                             return (
-                                <div key={itemIndex}>
+                                <div key={itemIndex} className='flex-1 flex flex-col md:flex-row max-w-max gap-x-2 items-center text-white/60'>
                                     {/* title */}
-                                    <div>{item.title}</div>
+                                    <div className='font-light mb-2 md:md-0'>{item.title}</div>
                                     <div className='hidden md:flex'>-</div>
+                                    <div>{item.stage}</div>
+                                    <div className='flex gap-x-4'>
+                                        {/* icons */}
+                                        {item.icons?.map((icon, itemIndex) => {
+                                            return <div key={itemIndex} className='text-2xl text-white'>{icon}</div>
+                                        })}
+                                    </div>
                                 </div>
                             )
                         })}
                     </div>
-                </div>
+                </motion.div>
             </div>
-        </div>
+        </div >
     )
 }
 
